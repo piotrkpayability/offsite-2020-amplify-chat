@@ -1,0 +1,23 @@
+:host {
+  .login-card {
+    width: 500px;
+    &__content {
+      display: flex;
+      align-items: center;
+    }
+    &__form-field {
+      margin-right: 20px;
+    }
+  }
+
+
+
+  .mr-20 {
+    margin-right: 20px;
+  }
+
+  .ml-20 {
+    margin-left: 20px;
+  }
+
+}

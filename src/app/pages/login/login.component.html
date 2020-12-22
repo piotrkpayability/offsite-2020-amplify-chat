@@ -1,0 +1,26 @@
+<mat-card class="login-card">
+  <mat-card-header>
+    <h2>Pyb Chat</h2>
+  </mat-card-header>
+  <mat-card-content class="login-card__content">
+    <ng-container *ngIf="!isLoggedIn; else loggedIn">
+      <mat-form-field class="login-card__form-field" appearance="outline" >
+        <mat-label>
+          User name
+        </mat-label>
+        <input matInput [(ngModel)]="userName"/>
+      </mat-form-field>
+      <button mat-raised-button (click)="login()" color="primary">Login</button>
+    </ng-container>
+
+    <ng-template #loggedIn>
+      Hi, {{ userName }}
+      <button mat-raised-button class="ml-20" (click)="logout()" color="warn">Logout</button>
+    </ng-template>
+
+  </mat-card-content>
+    <mat-card-actions>
+    </mat-card-actions>
+</mat-card>
+<br>
+
