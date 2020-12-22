@@ -24,13 +24,15 @@ export class ChatComponent implements OnInit {
 
     this.api.ListMessagess().then(
       ({items}) => {
-        this.messages = items.map(item => ({
-          id: item.id,
-          text: item.text,
-          user: item.userName,
-          createdAt: new Date(item.createdAt),
-        })).sort((a, b) => a.createdAt >= b.createdAt ? 1 : -1);
-      }
+        this.messages = items
+          .sort((a, b) => a.createdAt <= b.createdAt ? -1 : 1)
+          .map(item => ({
+            id: item.id,
+            text: item.text,
+            user: item.userName,
+            createdAt: new Date(item.createdAt),
+          }));
+       }
     );
     this.api.OnCreateMessagesListener.subscribe(result => {
       const value = (result as any).value.data.onCreateMessages;
