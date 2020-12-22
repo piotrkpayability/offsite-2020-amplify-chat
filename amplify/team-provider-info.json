@@ -1,0 +1,15 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-pybchat-dev-143541-authRole",
+            "UnauthRoleArn": "arn:aws:iam::588553090561:role/amplify-pybchat-dev-143541-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::588553090561:role/amplify-pybchat-dev-143541-authRole",
+            "Region": "eu-central-1",
+            "DeploymentBucketName": "amplify-pybchat-dev-143541-deployment",
+            "UnauthRoleName": "amplify-pybchat-dev-143541-unauthRole",
+            "StackName": "amplify-pybchat-dev-143541",
+            "StackId": "arn:aws:cloudformation:eu-central-1:588553090561:stack/amplify-pybchat-dev-143541/9779f630-445a-11eb-9d93-0afcd97a0332",
+            "AmplifyAppId": "d3re77c9mt20j7"
+        }
+    }
+}
