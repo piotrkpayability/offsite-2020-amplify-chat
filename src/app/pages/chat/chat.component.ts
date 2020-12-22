@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Message} from './message/message.interface';
 import {LoginService} from '../login/login.service';
+import {APIService, OnCreateMessagesSubscription} from '../../API.service';
 
 @Component({
   selector: 'app-chat',
@@ -13,28 +14,39 @@ export class ChatComponent implements OnInit {
   loggedUser: string;
   constructor(
     private loginService: LoginService,
+    private api: APIService,
   ) { }
 
   ngOnInit(): void {
     this.loginService.userName$.subscribe(
       userName => this.loggedUser = userName
     );
-    this.messages = [
-      {
-        user: 'Johnny Silverhand',
-        text: 'Wake the 🤬 up, Samurai! We have a city to 🔥'
-      },
-      {
-        user: 'Vi',
-        text: '🥔'
+
+    this.api.ListMessagess().then(
+      ({items}) => {
+        this.messages = items.map(item => ({
+          id: item.id,
+          text: item.text,
+          user: item.userName,
+          createdAt: new Date(item.createdAt),
+        }) );
       }
-    ];
+    );
+    this.api.OnCreateMessagesListener.subscribe(result => {
+      const value = (result as any).value.data.onCreateMessages;
+      this.messages.push({
+            id: value.id,
+            text: value.text,
+            user: value.userName,
+            createdAt: new Date(value.createdAt),
+          });
+    });
   }
 
-  send(message: string): void{
-    this.messages.push({
-      user: this.loggedUser,
-      text: this.message,
+  async send(message: string): Promise<void>{
+    await this.api.CreateMessages({
+      text: message,
+      userName: this.loggedUser,
     });
     this.message = '';
   }

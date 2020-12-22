@@ -1,0 +1,46 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateMessages(
+  $input: CreateMessagesInput!
+  $condition: ModelMessagesConditionInput
+) {
+  createMessages(input: $input, condition: $condition) {
+    id
+    userName
+    text
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateMessages(
+  $input: UpdateMessagesInput!
+  $condition: ModelMessagesConditionInput
+) {
+  updateMessages(input: $input, condition: $condition) {
+    id
+    userName
+    text
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteMessages(
+  $input: DeleteMessagesInput!
+  $condition: ModelMessagesConditionInput
+) {
+  deleteMessages(input: $input, condition: $condition) {
+    id
+    userName
+    text
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
