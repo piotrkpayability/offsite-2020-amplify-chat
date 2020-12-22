@@ -10,7 +10,7 @@ import {APIService, OnCreateMessagesSubscription} from '../../API.service';
 })
 export class ChatComponent implements OnInit {
   messages: Message[];
-  message: string;
+  newMessage: string;
   loggedUser: string;
   constructor(
     private loginService: LoginService,
@@ -29,7 +29,7 @@ export class ChatComponent implements OnInit {
           text: item.text,
           user: item.userName,
           createdAt: new Date(item.createdAt),
-        }) );
+        })).sort((a, b) => a.createdAt >= b.createdAt ? 1 : -1);
       }
     );
     this.api.OnCreateMessagesListener.subscribe(result => {
@@ -43,11 +43,17 @@ export class ChatComponent implements OnInit {
     });
   }
 
+  trackById(index, message?: Message): string {
+    return message.id;
+  }
+
   async send(message: string): Promise<void>{
     await this.api.CreateMessages({
       text: message,
       userName: this.loggedUser,
     });
-    this.message = '';
+    this.newMessage = '';
   }
+
+
 }

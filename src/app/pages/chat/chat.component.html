@@ -1,14 +1,14 @@
 <mat-card class="chat">
   <mat-card-content>
-    <app-message *ngFor="let message of messages" [message]="message">
+    <app-message *ngFor="let message of messages; trackBy:trackById" [message]="message">
 
     </app-message>
   </mat-card-content>
   <mat-card-actions class="chat__action" *ngIf="loggedUser">
     <mat-form-field appearance="outline">
-      <input matInput [(ngModel)]="message"/>
+      <input matInput [(ngModel)]="newMessage"/>
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="send(message)" [disabled]="!message">
+    <button mat-raised-button color="primary" (click)="send(newMessage)" [disabled]="!newMessage">
       ✉️
     </button>
   </mat-card-actions>
